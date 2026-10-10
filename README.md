@@ -117,6 +117,8 @@ The difference between the two trajectories is also not statistically significan
 The sensitivity analyses using thresholds of 3, 5, and 10 reviews per cell lead to the same overall conclusion.
 
 ## Repository Structure
+
+```text
 .
 ├── data/
 │   ├── cleaned_pr_data.csv
@@ -136,3 +138,126 @@ The sensitivity analyses using thresholds of 3, 5, and 10 reviews per cell lead 
 │
 ├── README.md
 └── requirements.txt
+```
+
+## Notebooks
+
+### `notebooks/01_exploration.ipynb`
+
+Contains the initial dataset exploration, dataset-version investigation, sample-selection process, and feasibility checks.
+
+### `notebooks/02_analysis.ipynb`
+
+Contains the final analysis used for the assignment.
+
+It performs:
+
+- data loading
+- data cleaning
+- repository selection
+- Early/Late classification
+- review metric calculation
+- RQ1 analysis
+- RQ2 analysis
+- Wilcoxon statistical tests
+- sensitivity analysis
+- CSV exports
+- figure generation
+
+## Output Files
+
+### `data/cleaned_pr_data.csv`
+
+Final cleaned PR-level dataset.
+
+### `data/repository_metrics.csv`
+
+Repository-level metrics used for the Agentic/Human and Early/Late comparisons.
+
+### `data/human_pr_review_events.jsonl`
+
+Detailed human-authored PR review-event data.
+
+### `data/rq2_sensitivity.csv`
+
+RQ2 sensitivity-analysis results.
+
+### `figures/rq1_review_coverage.png`
+
+Visualization of human review coverage across:
+
+- Agentic Early
+- Agentic Late
+- Human Early
+- Human Late
+
+### `figures/rq2_approval_rate.png`
+
+Visualization of human approval rates across the same four groups.
+
+## Reproducing the Analysis
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Raselll/LOG6307E-AI-Teammates-Mining.git
+cd LOG6307E-AI-Teammates-Mining
+```
+
+Create a virtual environment.
+
+Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Jupyter:
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```text
+notebooks/02_analysis.ipynb
+```
+
+Then restart the kernel and run all cells from the beginning.
+
+No GitHub API token is required for the final analysis.
+
+## Generated Outputs
+
+Running `02_analysis.ipynb` generates or updates:
+
+```text
+data/cleaned_pr_data.csv
+data/repository_metrics.csv
+data/rq2_sensitivity.csv
+figures/rq1_review_coverage.png
+figures/rq2_approval_rate.png
+```
+
+## Reproducibility Notes
+
+The fixed AIDev revision `68ed5f4b` is used so that future changes to the upstream dataset do not change the study sample or results.
+
+The detailed human review-event data required for the comparison are stored in the repository, so the final analysis does not depend on live GitHub API calls.
+
+One repository with unavailable detailed human review data was excluded from both Agentic and Human groups to preserve a symmetric within-repository comparison.

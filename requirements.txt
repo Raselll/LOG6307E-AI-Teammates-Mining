@@ -10,4 +10,3 @@ jupyter
 scipy
 huggingface_hub
 python-dotenv
-requests
