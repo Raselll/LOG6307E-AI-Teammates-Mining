@@ -35,8 +35,6 @@ https://api.github.com/repos/airbytehq/airbyte,Agentic,Early,109,56.0,0.51376146
 https://api.github.com/repos/airbytehq/airbyte,Agentic,Late,109,72.0,0.6605504587155964,198.0,66.0,0.3333333333333333
 https://api.github.com/repos/airbytehq/airbyte,Human,Early,80,4.0,0.05,13.0,4.0,0.3076923076923077
 https://api.github.com/repos/airbytehq/airbyte,Human,Late,55,11.0,0.2,24.0,18.0,0.75
-https://api.github.com/repos/antiwork/flexile,Agentic,Early,103,14.0,0.13592233009708737,29.0,2.0,0.06896551724137931
-https://api.github.com/repos/antiwork/flexile,Agentic,Late,103,15.0,0.14563106796116504,26.0,0.0,0.0
 https://api.github.com/repos/antiwork/gumroad,Agentic,Early,74,6.0,0.08108108108108109,8.0,4.0,0.5
 https://api.github.com/repos/antiwork/gumroad,Agentic,Late,74,4.0,0.05405405405405406,7.0,0.0,0.0
 https://api.github.com/repos/antiwork/gumroad,Human,Early,56,22.0,0.39285714285714285,62.0,12.0,0.1935483870967742
