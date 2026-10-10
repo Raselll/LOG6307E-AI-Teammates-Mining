@@ -33,13 +33,13 @@ Among formally reviewed pull requests, how does approval behaviour change from t
 
 Review Coverage = PRs receiving at least one formal human review / total PRs
 
-This measures how frequently pull requests receive direct human review.
+This metric measures how frequently pull requests receive direct human review.
 
 ### Approval Rate
 
 Approval Rate = approved human review events / total human review events
 
-This measures the proportion of formal human review events that result in approval.
+This metric measures the proportion of formal human review events that result in approval.
 
 ## Data
 
@@ -48,6 +48,8 @@ The main data source is the AIDev dataset:
 https://huggingface.co/datasets/hao-li/AIDev
 
 For reproducibility, the analysis uses the following fixed AIDev revision:
+
+`68ed5f4b`
 
 The analysis uses:
 
@@ -66,9 +68,7 @@ The final analysis contains:
 - 4,113 agent-authored pull requests
 - 2,034 human-authored pull requests
 
-Repositories with unavailable detailed human review data were excluded symmetrically from both Agentic and Human groups.
-
-All pull requests retained in the final study sample have review data available.
+Repositories with unavailable detailed human review data were excluded symmetrically from both the Agentic and Human groups.
 
 ## Early and Late Periods
 
@@ -76,11 +76,11 @@ Each repository's history with AI coding agents is divided into Early and Late p
 
 The analysis compares review behaviour within the same repositories across these periods.
 
-Human-authored pull requests from the same repositories are used as a comparison group.
+Human-authored pull requests from the same repositories are used as the comparison group.
 
 ## Statistical Analysis
 
-Because observations are paired by repository, the analysis uses Wilcoxon signed-rank tests.
+The analysis uses paired Wilcoxon signed-rank tests.
 
 For each research question, we compare:
 
@@ -108,16 +108,18 @@ The difference between the two trajectories is also not statistically significan
 
 ### RQ2 — Approval Behaviour
 
-The approval-rate distributions also vary across PR origin and period.
+The approval-rate distributions vary across PR origin and period.
 
-However, the paired statistical tests do not show a statistically significant Early-to-Late change in human approval rate for either Agentic or Human pull requests.
+However, the paired statistical tests do not show a statistically significant Early-to-Late change in approval rate for either Agentic or Human pull requests.
 
-The difference between their trajectories is also not statistically significant.
+The difference between the two trajectories is also not statistically significant.
 
-The sensitivity analyses using 3, 5, and 10 reviews per cell lead to the same overall conclusion.
+The sensitivity analyses using thresholds of 3, 5, and 10 reviews per cell lead to the same overall conclusion.
 
 ## Repository Structure
 
+```text
+.
 ├── data/
 │   ├── cleaned_pr_data.csv
 │   ├── human_pr_inline_comments.jsonl
@@ -136,3 +138,126 @@ The sensitivity analyses using 3, 5, and 10 reviews per cell lead to the same ov
 │
 ├── README.md
 └── requirements.txt
+```
+
+## Notebooks
+
+### `notebooks/01_exploration.ipynb`
+
+Contains the initial dataset exploration, dataset-version investigation, sample-selection process, and feasibility checks.
+
+### `notebooks/02_analysis.ipynb`
+
+Contains the final analysis used for the assignment.
+
+It performs:
+
+- data loading
+- data cleaning
+- repository selection
+- Early/Late classification
+- review metric calculation
+- RQ1 analysis
+- RQ2 analysis
+- Wilcoxon statistical tests
+- sensitivity analysis
+- CSV exports
+- figure generation
+
+## Output Files
+
+### `data/cleaned_pr_data.csv`
+
+Final cleaned PR-level dataset.
+
+### `data/repository_metrics.csv`
+
+Repository-level metrics used for the Agentic/Human and Early/Late comparisons.
+
+### `data/human_pr_review_events.jsonl`
+
+Detailed human-authored PR review-event data.
+
+### `data/rq2_sensitivity.csv`
+
+RQ2 sensitivity-analysis results.
+
+### `figures/rq1_review_coverage.png`
+
+Visualization of human review coverage across:
+
+- Agentic Early
+- Agentic Late
+- Human Early
+- Human Late
+
+### `figures/rq2_approval_rate.png`
+
+Visualization of human approval rates across the same four groups.
+
+## Reproducing the Analysis
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Raselll/LOG6307E-AI-Teammates-Mining.git
+cd LOG6307E-AI-Teammates-Mining
+```
+
+Create a virtual environment.
+
+Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start Jupyter:
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```text
+notebooks/02_analysis.ipynb
+```
+
+Then restart the kernel and run all cells from the beginning.
+
+No GitHub API token is required for the final analysis.
+
+## Generated Outputs
+
+Running `02_analysis.ipynb` generates or updates:
+
+```text
+data/cleaned_pr_data.csv
+data/repository_metrics.csv
+data/rq2_sensitivity.csv
+figures/rq1_review_coverage.png
+figures/rq2_approval_rate.png
+```
+
+## Reproducibility Notes
+
+The fixed AIDev revision `68ed5f4b` is used so that future changes to the upstream dataset do not change the study sample or results.
+
+The detailed human review-event data required for the comparison are stored in the repository, so the final analysis does not depend on live GitHub API calls.
+
+One repository with unavailable detailed human review data was excluded from both Agentic and Human groups to preserve a symmetric within-repository comparison.
