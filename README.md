@@ -33,13 +33,13 @@ Among formally reviewed pull requests, how does approval behaviour change from t
 
 Review Coverage = PRs receiving at least one formal human review / total PRs
 
-This measures how frequently pull requests receive direct human review.
+This metric measures how frequently pull requests receive direct human review.
 
 ### Approval Rate
 
 Approval Rate = approved human review events / total human review events
 
-This measures the proportion of formal human review events that result in approval.
+This metric measures the proportion of formal human review events that result in approval.
 
 ## Data
 
@@ -48,6 +48,8 @@ The main data source is the AIDev dataset:
 https://huggingface.co/datasets/hao-li/AIDev
 
 For reproducibility, the analysis uses the following fixed AIDev revision:
+
+`68ed5f4b`
 
 The analysis uses:
 
@@ -66,9 +68,7 @@ The final analysis contains:
 - 4,113 agent-authored pull requests
 - 2,034 human-authored pull requests
 
-Repositories with unavailable detailed human review data were excluded symmetrically from both Agentic and Human groups.
-
-All pull requests retained in the final study sample have review data available.
+Repositories with unavailable detailed human review data were excluded symmetrically from both the Agentic and Human groups.
 
 ## Early and Late Periods
 
@@ -76,11 +76,11 @@ Each repository's history with AI coding agents is divided into Early and Late p
 
 The analysis compares review behaviour within the same repositories across these periods.
 
-Human-authored pull requests from the same repositories are used as a comparison group.
+Human-authored pull requests from the same repositories are used as the comparison group.
 
 ## Statistical Analysis
 
-Because observations are paired by repository, the analysis uses Wilcoxon signed-rank tests.
+The analysis uses paired Wilcoxon signed-rank tests.
 
 For each research question, we compare:
 
@@ -108,16 +108,16 @@ The difference between the two trajectories is also not statistically significan
 
 ### RQ2 — Approval Behaviour
 
-The approval-rate distributions also vary across PR origin and period.
+The approval-rate distributions vary across PR origin and period.
 
-However, the paired statistical tests do not show a statistically significant Early-to-Late change in human approval rate for either Agentic or Human pull requests.
+However, the paired statistical tests do not show a statistically significant Early-to-Late change in approval rate for either Agentic or Human pull requests.
 
-The difference between their trajectories is also not statistically significant.
+The difference between the two trajectories is also not statistically significant.
 
-The sensitivity analyses using 3, 5, and 10 reviews per cell lead to the same overall conclusion.
+The sensitivity analyses using thresholds of 3, 5, and 10 reviews per cell lead to the same overall conclusion.
 
 ## Repository Structure
-
+.
 ├── data/
 │   ├── cleaned_pr_data.csv
 │   ├── human_pr_inline_comments.jsonl
